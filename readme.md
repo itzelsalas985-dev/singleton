@@ -45,7 +45,7 @@ public class Main {
 
 **Actividad:** identifica qué problema aparece al crear dos objetos distintos para la misma configuración.
 
-- [ ] Revisé el problema inicial y entiendo por qué `AppConfig` debería tener una sola instancia.
+- [X] Revisé el problema inicial y entiendo por qué `AppConfig` debería tener una sola instancia.
 
 ## 2. Convertir `AppConfig` en Singleton
 
@@ -77,9 +77,9 @@ public class AppConfig {
 
 **Actividad:** modifica la clase `AppConfig` para que nadie pueda crear nuevas instancias con `new` y para que todas las partes de la aplicación usen la misma referencia.
 
-- [ ] El constructor de `AppConfig` es privado.
-- [ ] Existe un campo `instance` `static` y `final`.
-- [ ] El método `getInstance()` devuelve la única instancia disponible.
+- [X] El constructor de `AppConfig` es privado.
+- [X] Existe un campo `instance` `static` y `final`.
+- [X] El método `getInstance()` devuelve la única instancia disponible.
 
 ## 3. Actualizar el cliente
 
@@ -102,8 +102,8 @@ public class Main {
 
 **Actividad:** ejecuta el programa después del cambio y comprueba que `config1` y `config2` apuntan a la misma instancia.
 
-- [ ] Actualicé `Main` para utilizar `AppConfig.getInstance()`.
-- [ ] Ejecuté el programa y comprobé el resultado de `(config1 == config2)`.
+- [X] Actualicé `Main` para utilizar `AppConfig.getInstance()`.
+- [X] Ejecuté el programa y comprobé el resultado de `(config1 == config2)`.
 
 ## 4. Compilar y ejecutar el ejercicio
 
@@ -118,22 +118,32 @@ El programa debe imprimir la configuración y mostrar que ambas referencias son 
 
 **Actividad:** guarda la salida que te permita demostrar que el patrón Singleton funciona correctamente.
 
-- [ ] El programa compiló sin errores.
-- [ ] Ejecuté `Main` y verifiqué la salida final.
+- [X] El programa compiló sin errores.
+- [X] Ejecuté `Main` y verifiqué la salida final.
 
 ## 5. Reflexión final
 
 Responde estas preguntas en tu cuaderno o en tu entrega:
 
 - ¿Cuál es el resultado de `(config1 == config2)` después de aplicar Singleton?
+    El resultado es `true`, porque `config1` y `config2` contienen la misma referencia devuelta por `AppConfig.getInstance()`. No son dos objetos diferentes, sino dos variables que apuntan a la única instancia de `AppConfig`.
+
 - ¿Por qué el campo `instance` debe ser `static`?
+    Debe ser `static` para que pertenezca a la clase `AppConfig` y no a un objeto particular. De esta manera, es posible acceder a la instancia compartida mediante `AppConfig.getInstance()` sin crear previamente un objeto con `new`.
+
+
 - ¿Qué ventaja tiene garantizar que exista una única instancia de configuración?
+    La principal ventaja es mantener una configuración consistente en toda la aplicación. Si una parte del programa modifica el tema o el idioma, las demás partes consultarán el mismo objeto y podrán observar los valores actualizados.
+
 - ¿Cuál es la principal desventaja de la inicialización ansiosa?
+    La instancia se crea cuando la clase se carga, aunque la aplicación nunca llegue a utilizarla. Esto puede consumir recursos innecesarios si la creación del objeto es costosa o si ocupa mucha memoria.
+
 - ¿Qué problema puede aparecer si el Singleton guarda estado global y la aplicación crece mucho?
+    El estado global puede generar dependencias ocultas entre distintas partes del programa. Un componente podría modificar la configuración y afectar inesperadamente a otros componentes. Esto también puede dificultar las pruebas, el mantenimiento y la ejecución paralela del programa.
 
 **Actividad:** anota tus respuestas y prepárate para discutirlas en clase.
 
-- [ ] Respondí las preguntas de análisis y entendí el impacto del patrón Singleton.
+- [X] Respondí las preguntas de análisis y entendí el impacto del patrón Singleton.
 
 ## 6. Criterio de finalización
 
